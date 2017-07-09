@@ -125,7 +125,7 @@ def build_f5 (VIPfqdn, VIPEnv, VIPip, VIPShort, VIPDesc, VIPEmail, CertType, VIP
 	#Creating CSR
 	#External
 	if CertType.lower() == 'external':
-		# create sys crypto key /CCI_CERT/cci-cert.heb.com keysize 2048 gen-csr country US city 'San Antonio' state TX organization 'Company' ou 'IS' common-name vipfqdn.com email-address email@email.com
+		# create sys crypto key /CCI_CERT/cci-cert.com keysize 2048 gen-csr country US city 'San Antonio' state TX organization 'Company' ou 'IS' common-name vipfqdn.com email-address email@email.com
 		if VIPEnv.lower == 'prod':
 			command = "create sys crypto key /" + VIPShort.upper() + "_" + VIPEnv.upper() + "/" + VIPfqdn.lower() + " keysize 2048 gen-csr country US city 'San Antonio' state TX organization 'Company' ou 'IS' common-name " + VIPDNS.lower() + ".com email-address " + VIPEmail.lower()
 			output = net_connect.send_command(command)
@@ -142,7 +142,7 @@ def build_f5 (VIPfqdn, VIPEnv, VIPip, VIPShort, VIPDesc, VIPEmail, CertType, VIP
 		else:
 			#modifying string to remove extra lines at top
 			output = output.split("\n",2)[2]
-			certFile = open(VIPShort + "-" + VIPEnv.lower() + "-external.heb.com.csr",'w')
+			certFile = open(VIPShort + "-" + VIPEnv.lower() + "-external.com.csr",'w')
 			certFile.write(output)
 			certFile.close()
 			print ("*******************************************")
@@ -169,7 +169,7 @@ def build_f5 (VIPfqdn, VIPEnv, VIPip, VIPShort, VIPDesc, VIPEmail, CertType, VIP
 		else:
 			#modifying string to remove extra lines at top
 			output = output.split("\n",2)[2]
-			certFile = open(VIPShort + "-" + VIPEnv.lower() + "-internal.heb.com.csr",'w')
+			certFile = open(VIPShort + "-" + VIPEnv.lower() + "-internal.com.csr",'w')
 			certFile.write(output)
 			certFile.close()
 			print ("*******************************************")
@@ -383,9 +383,9 @@ def remove_f5 (VIPfqdn, VIPEnv, VIPip, VIPShort, VIPDesc, VIPEmail, CertType, VI
 			serverTestPart = serverDNS [:2]
 			if (serverTestPart == "ar" or serverTestPart == "w2"):
 				if DevDevEnvTest == True:
-					serverDNS = serverDNS + ".devcorp.heb.com"
+					serverDNS = serverDNS + ".devcorp.com"
 				else:
-					serverDNS = serverDNS + ".heb.com"
+					serverDNS = serverDNS + ".com"
 
 				#Delete Node
 				#delete ltm node server1.heb.com address 172.x.x.x description "CCI Static Server"
