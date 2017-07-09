@@ -11,5 +11,5 @@ TMPL8-CentOS7-HTTPD,server2,CENT-Cluster,2,,1,2,none,
 0,0,0,2,,0,0,none,
 0,0,0,2,,0,0,none,
 0,0,0,2,,0,0,none,
-NMO_Info,VIP_FQDN,Enviroment,VIP_DNS,VIP_IP,App_Short,App_Desc,Email,Certificate_Type
-f5,IPAtest1-dev.devcorp.com,dev,ipatest1,172.x.x.x,IPAtest1,IPA test1,email@email.com,Internal
+NMetwork_Info,VIP_FQDN,Enviroment,VIP_DNS,VIP_IP,App_Short,App_Desc,Email,Certificate_Type
+f5,test1-dev.devcorp.com,dev,ipatest1,172.x.x.x,IPAtest1,IPA test1,email@email.com,Internal
