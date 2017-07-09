@@ -152,7 +152,7 @@ def build_f5 (VIPfqdn, VIPEnv, VIPip, VIPShort, VIPDesc, VIPEmail, CertType, VIP
 			d = {'time' : datetime.datetime.now().strftime("%m-%d.%H:%M:%S.%f"), 'executed_on' : socket.gethostname(), 'ScriptName' : os.path.basename(__file__), 'user' : user, 'enviroment_build' : VIPfqdn, 'command' : command, 'response' : output, 'message' : 'Success - Created External CSR'}
 			my_logger.debug(d)
 	else:
-		#create sys crypto key /CCI_CERT/cci-cert.heb.com keysize 2048 gen-csr country US city 'San Antonio' state TX organization 'Company' ou '"  +  f5Device  +  "' common-name vipfqdn.com email-address email@email.com
+		#create sys crypto key /CCI_CERT/cci-cert..com keysize 2048 gen-csr country US city 'San Antonio' state TX organization 'Company' ou '"  +  f5Device  +  "' common-name vipfqdn.com email-address email@email.com
 		if VIPEnv == 'prod':
 			command = "create sys crypto key /" + VIPShort.upper() + "_" + VIPEnv.upper() + "/" + VIPfqdn.lower() + " keysize 2048 gen-csr country US city 'San Antonio' state TX organization 'Company' ou '" + f5Device + "' common-name " + VIPShort.lower() + ".com email-address " + VIPEmail.lower()
 			output = net_connect.send_command(command)
@@ -331,7 +331,7 @@ def remove_f5 (VIPfqdn, VIPEnv, VIPip, VIPShort, VIPDesc, VIPEmail, CertType, VI
 
 	if results > 6:
 		#Certificate
-		#delete sys crypto key /CCI_CERT/cci-cert.heb.com.key
+		#delete sys crypto key /CCI_CERT/cci-cert..com.key
 		command = "delete sys crypto key /" + VIPShort.upper() + "_" + VIPEnv.upper() + "/" + VIPfqdn.lower() + ".key"
 		output = net_connect.send_command(command)
 		if output != "":
@@ -388,7 +388,7 @@ def remove_f5 (VIPfqdn, VIPEnv, VIPip, VIPShort, VIPDesc, VIPEmail, CertType, VI
 					serverDNS = serverDNS + ".com"
 
 				#Delete Node
-				#delete ltm node server1.heb.com address 172.x.x.x description "CCI Static Server"
+				#delete ltm node server1..com address 172.x.x.x description "CCI Static Server"
 				command = "delete ltm node " + serverDNS.lower()
 				output = net_connect.send_command(command)
 				if output != "":
@@ -455,7 +455,7 @@ except:
 	my_logger.debug(d)
 	sys.exit(126)
 	
-if 'devcorp.heb.com' in VIPfqdn:
+if 'devcorp..com' in VIPfqdn:
 	DevDevEnvTest = True
 
 if VIPfqdn == "" or VIPEnv == "" or VIPip == "" or VIPShort == "" or VIPDesc == "" or VIPEmail == "" or VIPDesc == "" or CertType == "":
@@ -528,7 +528,7 @@ results = build_f5 (VIPfqdn, VIPEnv, VIPip, VIPShort, VIPDesc, VIPEmail, CertTyp
 if results == 0:
 
 	if CertType.lower() != 'external':
-		certFile = open(VIPShort + "-" + VIPEnv.lower() + "-internal.heb.com.csr",'r')
+		certFile = open(VIPShort + "-" + VIPEnv.lower() + "-internal..com.csr",'r')
 		csr_data = certFile.read()
 		if VIPEnv.lower() == 'prod':
 			url = "https://prod-pki.com/add-pkcs10-request.xuda"
@@ -548,7 +548,6 @@ if results == 0:
 			my_logger.debug(d)
 		certFile.close()
 		
-
 	print ("*****************************************")
 	print ("* ____                              _ _ *")
 	print ("*/ ___| _   _  ___ ___ ___  ___ ___| | |*")
