@@ -70,14 +70,14 @@ def build_f5 (VIPfqdn, VIPEnv, VIPip, VIPShort, VIPDesc, VIPEmail, CertType, VIP
 		serverTestPart = serverDNS [:2]
 		if (serverTestPart == "ar" or serverTestPart == "w2"):
 			if DevDevEnvTest == True:
-				serverDNS = serverDNS + ".devcorp.heb.com"
+				serverDNS = serverDNS + ".devcorp.com"
 				serverIP =  socket.gethostbyname(serverDNS)
 			else:
-				serverDNS = serverDNS + ".heb.com"
+				serverDNS = serverDNS + ".com"
 				serverIP = socket.gethostbyname(serverDNS)
 
 			#Adding Node
-			#create ltm node arpwbl0003401.heb.com address 172.16.86.72 description "CCI Static Server"
+			#create ltm node server1.com address 172.x.x.x description "CCI Static Server"
 			command = "create ltm node " + serverDNS.lower() + " address " + serverIP
 			output = net_connect.send_command(command)
 			if output != "":
